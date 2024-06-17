@@ -1,10 +1,20 @@
 public class Decimal {
-    public static int[] toAscii (String input) {
-        int[] asciiArray = new int[input.length()];
-        for (int i = 0; i < input.length(); i++) {
-            char c = input.charAt(i);
-            asciiArray[i] = (int) c;
+    public static int[] toAscii(String input) {
+        String[] decimalStrings = input.split(" ");
+        int[] asciiArray = new int[decimalStrings.length];
+        for (int i = 0; i < decimalStrings.length; i++) {
+            int asciiValue = Integer.parseInt(decimalStrings[i]);
+            asciiArray[i] = asciiValue;
         }
         return asciiArray;
+    }
+
+    public static void main(String[] args) {
+        String decimalInput = "72 101 108 108 111";
+        int[] asciiValues = toAscii(decimalInput);
+        for (int ascii : asciiValues) {
+            System.out.print((char) ascii);
+        }
+        System.out.println();
     }
 }
