@@ -60,15 +60,4 @@ public class Main {
         }
         scanner.close();
     }
-
-    public static boolean isValidInput(String input, String validCharacters) {
-        for (int i = 0; i < input.length(); i++) {
-            char c = input.charAt(i);
-            if (!validCharacters.contains(String.valueOf(c))) {
-                return false; 
-            }
-        }
-        return true;
-    }
-
 }
