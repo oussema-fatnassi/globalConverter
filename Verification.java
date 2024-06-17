@@ -8,6 +8,7 @@ public class Verification {
         System.out.println("Welcome to the Global Converter !!!");
         System.out.print("Enter a string: ");
         String n = sc.nextLine();
+        
         for (int i = 0; i < n.length(); i++) {
             char c = n.charAt(i);
             if (Caracters.contains(String.valueOf(c))) {
