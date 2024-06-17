@@ -1,5 +1,4 @@
-public class InputVerification {
-
+public class InputVerification {                        // Class to verify the input for each type of input
     public static boolean isBinary(String input) {
         return input.matches("[01]+");
     }

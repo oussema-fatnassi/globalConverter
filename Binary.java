@@ -1,5 +1,5 @@
-public class Binary {
-    public static int[] toAscii(String input) {
+public class Binary {                                               // Class to convert binary to ASCII
+    public static int[] toAscii(String input) {                     // Method to convert binary to ASCII
         int[] asciiArray = new int[input.length() / 8];
         for (int i = 0; i < input.length(); i += 8) {
             int endIndex = Math.min(i + 8, input.length());
@@ -7,11 +7,10 @@ public class Binary {
             int asciiValue = binaryToDecimal(chunk);
             asciiArray[i / 8] = asciiValue;
         }
-
         return asciiArray;
     }
 
-    public static int binaryToDecimal(String binary) {
+    public static int binaryToDecimal(String binary) {              // Method to convert binary to decimal
         int decimal = 0;
         int power = 0;
         for (int i = binary.length() - 1; i >= 0; i--) {

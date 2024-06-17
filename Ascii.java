@@ -1,6 +1,5 @@
-public class Ascii {
-
-    public static String toDecimal(int[] asciiArray) {
+public class Ascii {                                                            // Class to convert ASCII to other formats
+    public static String toDecimal(int[] asciiArray) {                          // Method to convert ASCII to decimal
         StringBuilder decimalString = new StringBuilder();
         for (int ascii : asciiArray) {
             decimalString.append(ascii).append(" ");
@@ -8,7 +7,7 @@ public class Ascii {
         return decimalString.toString().trim();
     }
 
-    public static String toHexadecimal(int[] asciiArray) {
+    public static String toHexadecimal(int[] asciiArray) {                      // Method to convert ASCII to hexadecimal
         StringBuilder hexString = new StringBuilder();
         for (int ascii : asciiArray) {
             hexString.append(convertToHexadecimal(ascii)).append(" ");
@@ -16,7 +15,7 @@ public class Ascii {
         return hexString.toString().trim();
     }
 
-    public static String toOctal(int[] asciiArray) {
+    public static String toOctal(int[] asciiArray) {                            // Method to convert ASCII to octal
         StringBuilder octalString = new StringBuilder();
         for (int ascii : asciiArray) {
             octalString.append(convertToOctal(ascii)).append(" ");
@@ -24,7 +23,7 @@ public class Ascii {
         return octalString.toString().trim();
     }
 
-    public static String toBinary(int[] asciiArray) {
+    public static String toBinary(int[] asciiArray) {                           // Method to convert ASCII to binary
         StringBuilder binaryString = new StringBuilder();
         for (int ascii : asciiArray) {
             binaryString.append(convertToBinary(ascii)).append(" ");
@@ -32,7 +31,7 @@ public class Ascii {
         return binaryString.toString().trim();
     }
 
-    public static String toText(int[] asciiArray) {
+    public static String toText(int[] asciiArray) {                             // Method to convert ASCII to text
         StringBuilder textString = new StringBuilder();
         for (int ascii : asciiArray) {
             textString.append((char) ascii);
@@ -40,7 +39,7 @@ public class Ascii {
         return textString.toString();
     }
 
-    private static String convertToBinary(int decimal) {
+    private static String convertToBinary(int decimal) {                        // Method to convert decimal to binary
         StringBuilder binary = new StringBuilder();
         if (decimal == 0) {
             binary.append(0);
@@ -54,7 +53,7 @@ public class Ascii {
         return binary.toString();
     }
 
-    private static String convertToHexadecimal(int decimal) {
+    private static String convertToHexadecimal(int decimal) {                   // Method to convert decimal to hexadecimal
         StringBuilder hexadecimal = new StringBuilder();
         if (decimal == 0) {
             hexadecimal.append(0);
@@ -72,7 +71,7 @@ public class Ascii {
         return hexadecimal.toString();
     }
 
-    private static String convertToOctal(int decimal) {
+    private static String convertToOctal(int decimal) {                         // Method to convert decimal to octal
         StringBuilder octal = new StringBuilder();
         if (decimal == 0) {
             octal.append(0);
