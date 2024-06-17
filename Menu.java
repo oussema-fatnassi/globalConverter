@@ -12,7 +12,6 @@ public class Menu {
         System.out.println("text (-t)");
         
         String choice = scanner.nextLine().trim().toLowerCase();                        // User inputs
-        String choice2 = scanner.nextLine().trim().toLowerCase();
         int[] asciiArray = new int[0];
         String translation = ""; 
 
@@ -73,6 +72,7 @@ public class Menu {
         System.out.println("octal (-o)");
         System.out.println("decimal (-d)");
         System.out.println("text (-t)");
+        String choice2 = scanner.nextLine().trim().toLowerCase();
 
         switch (choice2) {                                                              // Switch case to check the user input and chose the appropriate method
             case "-h":
