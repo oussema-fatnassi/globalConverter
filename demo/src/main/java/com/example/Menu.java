@@ -23,56 +23,61 @@ public class Menu {
                     case "-h":
                     case "hexadecimal":                                                         // If user enters hexadecimal
                         System.out.print("Enter a hexadecimal string: ");
-                        String hex = scanner.nextLine().trim(); 
-                        if (!InputVerification.isHexadecimal(hex)) {
+                        String hex = scanner.nextLine().trim();
+                        while (!InputVerification.isHexadecimal(hex)) {
                             System.out.println("Invalid hexadecimal string. Enter only 0-9A-Fa-f.");
-                        } else {
-                            asciiArray = Hexadecimal.toAscii(hex);
+                            System.out.print("Enter a hexadecimal string: ");
+                            hex = scanner.nextLine().trim();
                         }
+                        asciiArray = Hexadecimal.toAscii(hex);
                         validChoice = true;
                         break;
                     case "-b":
                     case "binary":                                                              // If user enters binary
                         System.out.print("Enter a binary string: ");
                         String bin = scanner.nextLine().trim();
-                        if (!InputVerification.isBinary(bin)) {
-                            System.out.println("Invalid binary string. Enter only 0 and 1.");
-                        } else {
-                            asciiArray = Binary.toAscii(bin);
+                        while (!InputVerification.isBinary(bin)) {
+                            System.out.println("Invalid binary string. Enter only 0-1.");
+                            System.out.print("Enter a binary string: ");
+                            bin = scanner.nextLine().trim();
                         }
+                        asciiArray = Binary.toAscii(bin);
                         validChoice = true;
                         break;
                     case "-o":
                     case "octal":                                                               // If user enters octal
                         System.out.print("Enter an octal string: ");
                         String oct = scanner.nextLine().trim();
-                        if(!InputVerification.isOctal(oct)) {
+                        while (!InputVerification.isOctal(oct)) {
                             System.out.println("Invalid octal string. Enter only 0-7.");
-                        } else {
-                            asciiArray = Octal.toAscii(oct);
+                            System.out.print("Enter an octal string: ");
+                            oct = scanner.nextLine().trim();
                         }
+                        asciiArray = Octal.toAscii(oct);
                         validChoice = true;
                         break;
                     case "-d":
                     case "decimal":                                                             // If user enters decimal
                         System.out.print("Enter a decimal string: ");
                         String dec = scanner.nextLine();
-                        if (!InputVerification.isDecimal(dec)) {
+                        while (!InputVerification.isDecimal(dec)) {
                             System.out.println("Invalid decimal string. Enter only 0-9.");
-                        } else {
-                            asciiArray = Decimal.toAscii(dec);
+                            System.out.print("Enter a decimal string: ");
+                            dec = scanner.nextLine();
                         }
+                        asciiArray = Decimal.toAscii(dec);
                         validChoice = true;
                         break;
                     case "-t":
                     case "text":                                                                // If user enters text
                         System.out.print("Enter a text string: ");
                         String text = scanner.nextLine();
-                        if(!InputVerification.isText(text)) {
-                            System.out.println("Invalid text string. Enter only alphanumeric characters.");
-                        } else {
-                            asciiArray = Text.toAscii(text);
+                        while (!InputVerification.isText(text)) {
+                            System.out.println("Invalid text string. Enter only printable ASCII characters.");
+                            System.out.print("Enter a text string: ");
+                            text = scanner.nextLine();
                         }
+                        asciiArray = Text.toAscii(text);
                         validChoice = true;
                         break;
                     case "exit":                                                                // If user wants to exit
