@@ -1,5 +1,6 @@
 package com.example;
 import java.util.Scanner;
+import java.io.IOException;
 
 public class Menu {
     public void MenuInstance() {                                                        // Method to display the menu
@@ -163,7 +164,14 @@ public class Menu {
             System.out.println("Press Enter to continue...");
             String wait = scanner.nextLine();
             try {
-                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();      // Clear the screen
+                String os = System.getProperty("os.name").toLowerCase();
+                ProcessBuilder processBuilder;
+                if (os.contains("win")) {
+                    processBuilder = new ProcessBuilder("cmd", "/c", "cls");
+                } else {
+                    processBuilder = new ProcessBuilder("clear");
+                }
+                processBuilder.inheritIO().start().waitFor();
             } catch (Exception e) {
                 System.out.println("Error while clearing the screen.");
             }
