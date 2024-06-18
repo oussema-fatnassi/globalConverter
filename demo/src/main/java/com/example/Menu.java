@@ -15,8 +15,7 @@ public class Menu {
             System.out.println("| 3. Octal (-o)                              |");
             System.out.println("| 4. Binary (-b)                             |");
             System.out.println("| 5. Text (-t)                               |");
-            System.out.println("| 6. Clear Screen                            |");
-            System.out.println("| 7. Exit                                    |");
+            System.out.println("| 6. Exit                                    |");
             System.out.println("+--------------------------------------------+");
             System.out.print("Please choose an option: ");
             boolean validChoice = false;
@@ -98,7 +97,7 @@ public class Menu {
                         validChoice = true;
                         break;
                     case "exit":                                                                // If user wants to exit
-                    case"7":
+                    case"6":
                         System.out.println("Exiting the program.");
                         scanner.close();
                         System.exit(0);
@@ -161,6 +160,13 @@ public class Menu {
             }
             System.out.println("Your untranslated string is: " + untranslation);           // Display the unstranslated string
             System.out.println("The translation is: " + translation);                       // Display the translation
+            System.out.println("Press Enter to continue...");
+            String wait = scanner.nextLine();
+            try {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();      // Clear the screen
+            } catch (Exception e) {
+                System.out.println("Error while clearing the screen.");
+            }
         }
     }
 }
