@@ -1,3 +1,4 @@
+package com.example;
 public class Decimal {                                              // Class to convert decimal to ASCII
     public static int[] toAscii(String input) {                     // Method to convert decimal to ASCII
         String[] decimalStrings = input.split(" ");

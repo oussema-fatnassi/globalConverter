@@ -1,3 +1,4 @@
+package com.example;
 public class Binary {                                               // Class to convert binary to ASCII
     public static int[] toAscii(String input) {                     // Method to convert binary to ASCII
         String[] binaryArray = input.split("\\s+");

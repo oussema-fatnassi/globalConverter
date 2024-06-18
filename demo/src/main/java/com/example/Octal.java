@@ -1,3 +1,4 @@
+package com.example;
 public class Octal {                                            // Class to convert octal to ASCII
     public static int[] toAscii(String input) {                 // Method to convert octal to ASCII
         // Split the input string by spaces

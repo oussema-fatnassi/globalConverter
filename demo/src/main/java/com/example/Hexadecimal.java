@@ -1,3 +1,4 @@
+package com.example;
 public class Hexadecimal {                                      
     public static int[] toAscii(String input) {                 
         String[] hexArray = input.split("\\s+");
