@@ -1,6 +1,5 @@
 public class Hexadecimal {                                      
     public static int[] toAscii(String input) {                 
-        // Split the input string by spaces
         String[] hexArray = input.split("\\s+");
         int[] asciiArray = new int[hexArray.length];
         

@@ -1,12 +1,15 @@
 public class Octal {                                            // Class to convert octal to ASCII
     public static int[] toAscii(String input) {                 // Method to convert octal to ASCII
-        int[] asciiArray = new int[input.length() / 3];
-        for (int i = 0; i < input.length(); i += 3) {
-            int endIndex = Math.min(i + 3, input.length());
-            String chunk = input.substring(i, endIndex);
+        // Split the input string by spaces
+        String[] octalArray = input.split("\\s+");
+        int[] asciiArray = new int[octalArray.length];
+        
+        for (int i = 0; i < octalArray.length; i++) {
+            String chunk = octalArray[i];
             int asciiValue = octalToDecimal(chunk);
-            asciiArray[i / 3] = asciiValue;
+            asciiArray[i] = asciiValue;
         }
+        
         return asciiArray;
     }
 
@@ -15,7 +18,7 @@ public class Octal {                                            // Class to conv
     }
 
     public static void main(String[] args) {
-        String octalInput = "110145154154157";
+        String octalInput = "110 105 114 114 117"; 
         int[] asciiValues = toAscii(octalInput);
         for (int ascii : asciiValues) {
             System.out.print((char) ascii);
