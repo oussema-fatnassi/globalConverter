@@ -1,11 +1,11 @@
 public class Binary {                                               // Class to convert binary to ASCII
     public static int[] toAscii(String input) {                     // Method to convert binary to ASCII
-        int[] asciiArray = new int[input.length() / 8];
-        for (int i = 0; i < input.length(); i += 8) {
-            int endIndex = Math.min(i + 8, input.length());
-            String chunk = input.substring(i, endIndex);
+        String[] binaryArray = input.split("\\s+");
+        int[] asciiArray = new int[binaryArray.length];
+        for (int i = 0; i < binaryArray.length; i ++) {
+            String chunk = binaryArray[i];
             int asciiValue = binaryToDecimal(chunk);
-            asciiArray[i / 8] = asciiValue;
+            asciiArray[i] = asciiValue;
         }
         return asciiArray;
     }
@@ -23,7 +23,7 @@ public class Binary {                                               // Class to 
     }
 
     public static void main(String[] args) {
-        String binaryInput = "0100100001100101011011000110110001101111";
+        String binaryInput = "01001000 01100101 01101100 01101100 01101111";
         int[] asciiValues = toAscii(binaryInput);
         for (int ascii : asciiValues) {
             System.out.print((char)ascii);

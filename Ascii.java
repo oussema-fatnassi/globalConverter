@@ -49,6 +49,9 @@ public class Ascii {                                                            
                 binary.insert(0, remainder);
                 decimal = decimal / 2;
             }
+            while(binary.length() % 8 != 0) {
+                binary.insert(0, 0);
+            }
         }
         return binary.toString();
     }
