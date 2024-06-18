@@ -21,13 +21,4 @@ public class Binary {                                               // Class to 
         }
         return decimal;
     }
-
-    public static void main(String[] args) {
-        String binaryInput = "01001000 01100101 01101100 01101100 01101111";
-        int[] asciiValues = toAscii(binaryInput);
-        for (int ascii : asciiValues) {
-            System.out.print((char)ascii);
-        }
-        System.out.println();
-    }
 }

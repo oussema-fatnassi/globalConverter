@@ -87,14 +87,4 @@ public class Ascii {                                                            
         }
         return octal.toString();
     }
-
-    public static void main(String[] args) {
-        int[] asciiArray = {72, 101, 108, 108, 111};
-
-        System.out.println("Decimal: " + toDecimal(asciiArray));
-        System.out.println("Hexadecimal: " + toHexadecimal(asciiArray));
-        System.out.println("Octal: " + toOctal(asciiArray));
-        System.out.println("Binary: " + toBinary(asciiArray));
-        System.out.println("Text: " + toText(asciiArray));
-    }
 }

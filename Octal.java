@@ -16,13 +16,4 @@ public class Octal {                                            // Class to conv
     public static int octalToDecimal(String octal) {            // Method to convert octal to decimal
         return Integer.parseInt(octal, 8);
     }
-
-    public static void main(String[] args) {
-        String octalInput = "110 105 114 114 117"; 
-        int[] asciiValues = toAscii(octalInput);
-        for (int ascii : asciiValues) {
-            System.out.print((char) ascii);
-        }
-        System.out.println();
-    }
 }

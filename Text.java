@@ -7,13 +7,4 @@ public class Text {                                     // Class to convert text
         }
         return asciiArray;
     }
-
-    public static void main(String[] args) {
-        String textInput = "Hello"; 
-        int[] asciiValues = toAscii(textInput);
-        for (int ascii : asciiValues) {
-            System.out.print(ascii + " ");
-        }
-        System.out.println();
-    }
 }
