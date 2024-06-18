@@ -1,21 +1,24 @@
-public class Hexadecimal {                                      // Class to convert hexadecimal to ASCII
-    public static int[] toAscii(String input) {                 // Method to convert hexadecimal to ASCII
-        int[] asciiArray = new int[input.length() / 2];
-        for (int i = 0; i < input.length(); i += 2) {
-            int endIndex = Math.min(i + 2, input.length());
-            String chunk = input.substring(i, endIndex);
+public class Hexadecimal {                                      
+    public static int[] toAscii(String input) {                 
+        // Split the input string by spaces
+        String[] hexArray = input.split("\\s+");
+        int[] asciiArray = new int[hexArray.length];
+        
+        for (int i = 0; i < hexArray.length; i++) {
+            String chunk = hexArray[i];
             int asciiValue = hexToDecimal(chunk);
-            asciiArray[i / 2] = asciiValue;
+            asciiArray[i] = asciiValue;
         }
+        
         return asciiArray;
     }
 
-    public static int hexToDecimal(String hex) {                // Method to convert hexadecimal to decimal
+    public static int hexToDecimal(String hex) {                
         return Integer.parseInt(hex, 16);
     }
 
     public static void main(String[] args) {
-        String hexInput = "48656c6c6f"; 
+        String hexInput = "48 65 6c 6c 6f"; 
         int[] asciiValues = toAscii(hexInput);
         for (int ascii : asciiValues) {
             System.out.print((char)ascii);
