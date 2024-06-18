@@ -7,7 +7,7 @@ public class Menu {
         while (true) {
             System.out.println("+--------------------------------------------+");
             System.out.println("|             ASCII Converter                |");
-            System.out.println("|   by Oussema F., Baptiste A., Ali I. A.    |");
+            System.out.println("|   by Oussema F., Baptiste A., Ali A. I.    |");
             System.out.println("+--------------------------------------------+");
             System.out.println("|Please choose the starting format :         |");
             System.out.println("| 1. Decimal (-d)                            |");
