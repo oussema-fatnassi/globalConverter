@@ -20,6 +20,7 @@ public class Menu {
             System.out.println("+--------------------------------------------+");
             System.out.print("Please choose an option: ");
             boolean validChoice = false;
+            String untranslation = "";
             String translation = ""; 
             int[] asciiArray = new int[0];
 
@@ -31,11 +32,13 @@ public class Menu {
                     case "hexadecimal":                                                         // If user enters hexadecimal
                         System.out.print("Enter a hexadecimal string: ");
                         String hex = scanner.nextLine().trim(); 
-                        if (!InputVerification.isHexadecimal(hex)) {
-                            System.out.println("Invalid hexadecimal string. Enter only 0-9A-Fa-f.");
-                        } else {
-                            asciiArray = Hexadecimal.toAscii(hex);
+                        while (!InputVerification.isHexadecimal(hex)) {                         // Check if the input is valid
+                            System.out.println("Invalid hexadecimal string. Enter only 0-9 and A-F.");
+                            System.out.print("Enter a hexadecimal string: ");
+                            hex = scanner.nextLine().trim();
                         }
+                        asciiArray = Hexadecimal.toAscii(hex);
+                        untranslation = hex;
                         validChoice = true;
                         break;
                     case "-b":
@@ -43,11 +46,13 @@ public class Menu {
                     case "binary":                                                              // If user enters binary
                         System.out.print("Enter a binary string: ");
                         String bin = scanner.nextLine().trim();
-                        if (!InputVerification.isBinary(bin)) {
-                            System.out.println("Invalid binary string. Enter only 0 and 1.");
-                        } else {
-                            asciiArray = Binary.toAscii(bin);
+                        while (!InputVerification.isBinary(bin)) {                             // Check if the input is valid
+                            System.out.println("Invalid binary string. Enter only 0-1.");
+                            System.out.print("Enter a binary string: ");
+                            bin = scanner.nextLine().trim();
                         }
+                        asciiArray = Binary.toAscii(bin);
+                        untranslation = bin;
                         validChoice = true;
                         break;
                     case "-o":
@@ -55,11 +60,13 @@ public class Menu {
                     case "octal":                                                               // If user enters octal
                         System.out.print("Enter an octal string: ");
                         String oct = scanner.nextLine().trim();
-                        if(!InputVerification.isOctal(oct)) {
+                        while (!InputVerification.isOctal(oct)) {                              // Check if the input is valid
                             System.out.println("Invalid octal string. Enter only 0-7.");
-                        } else {
-                            asciiArray = Octal.toAscii(oct);
+                            System.out.print("Enter an octal string: ");
+                            oct = scanner.nextLine().trim();
                         }
+                        asciiArray = Octal.toAscii(oct);
+                        untranslation = oct;
                         validChoice = true;
                         break;
                     case "-d":
@@ -67,11 +74,13 @@ public class Menu {
                     case "decimal":                                                             // If user enters decimal
                         System.out.print("Enter a decimal string: ");
                         String dec = scanner.nextLine();
-                        if (!InputVerification.isDecimal(dec)) {
+                        while (!InputVerification.isDecimal(dec)) {                            // Check if the input is valid
                             System.out.println("Invalid decimal string. Enter only 0-9.");
-                        } else {
-                            asciiArray = Decimal.toAscii(dec);
+                            System.out.print("Enter a decimal string: ");
+                            dec = scanner.nextLine();
                         }
+                        asciiArray = Decimal.toAscii(dec);
+                        untranslation = dec;
                         validChoice = true;
                         break;
                     case "-t":
@@ -79,11 +88,13 @@ public class Menu {
                     case "text":                                                                // If user enters text
                         System.out.print("Enter a text string: ");
                         String text = scanner.nextLine();
-                        if(!InputVerification.isText(text)) {
-                            System.out.println("Invalid text string. Enter only alphanumeric characters.");
-                        } else {
-                            asciiArray = Text.toAscii(text);
+                        while (!InputVerification.isText(text)) {                               // Check if the input is valid
+                            System.out.println("Invalid text string. Enter only printable characters.");
+                            System.out.print("Enter a text string: ");
+                            text = scanner.nextLine();
                         }
+                        asciiArray = Text.toAscii(text);
+                        untranslation = text;
                         validChoice = true;
                         break;
                     case "exit":                                                                // If user wants to exit
@@ -148,6 +159,7 @@ public class Menu {
                         break;
                 }
             }
+            System.out.println("Your untranslated string is: " + untranslation);           // Display the unstranslated string
             System.out.println("The translation is: " + translation);                       // Display the translation
         }
     }
