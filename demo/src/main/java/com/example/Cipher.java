@@ -65,4 +65,25 @@ public class Cipher {
         return result.toString();
     }
 
+    public static String AtbashCipher(String text) {
+        StringBuilder result = new StringBuilder();
+        for (char c : text.toCharArray()) {
+            if (Character.isLetter(c)) {
+                char encryptedChar = Character.isUpperCase(c) ? (char) ('Z' - (c - 'A')) : (char) ('z' - (c - 'a'));
+                result.append(encryptedChar);
+            } else if (Character.isDigit(c)) {
+                int digit = Character.getNumericValue(c);
+                int encryptedDigit = 9 - digit; // For digits, it's just the reverse order
+                result.append(encryptedDigit);
+            } else {
+                result.append(c); // Non-letter characters remain unchanged
+            }
+        }
+        return result.toString();
+    }
+
+    public static String AtbashDecipher(String text) {
+        return AtbashCipher(text); // Atbash is its own inverse
+    }
+
 }

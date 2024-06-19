@@ -114,7 +114,7 @@ public class Menu {
             System.out.println("| Do you want to cypher your text? :         |");
             System.out.println("| 1. Caesar Cipher                           |");
             System.out.println("| 2. Vigenere Cipher                         |");
-            System.out.println("| 3. Cipher 3                                |");
+            System.out.println("| 3. Atbash Cipher                           |");
             System.out.println("| 4. DONT CIPHER                             |");
             System.out.println("+--------------------------------------------+");
             System.out.print("Please choose an option: ");
@@ -158,8 +158,9 @@ public class Menu {
                         validChoice3 = true;
                         break;
                     case "3":
-                    case "cipher 3":
-                        translation = Cipher.CeasarCipher(translation, 3);
+                    case "atbash cipher":
+                        translation = Cipher.AtbashCipher(translation);
+                        cipherType = "Atbash Cipher";
                         validChoice3 = true;
                         break;
                     case "4":
