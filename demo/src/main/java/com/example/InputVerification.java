@@ -19,4 +19,8 @@ public class InputVerification {                        // Class to verify the i
     public static boolean isText(String input) {
         return input.matches("[a-zA-Z0-9\\s]+"); 
     }
+
+public static boolean isAlphabeticText(String input) {
+        return input.matches("[a-zA-Z]+"); 
+    }
 }

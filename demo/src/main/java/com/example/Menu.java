@@ -1,6 +1,5 @@
 package com.example;
 import java.util.Scanner;
-import java.io.IOException;
 
 public class Menu {
     public void MenuInstance() {                                                        // Method to display the menu
@@ -108,7 +107,60 @@ public class Menu {
                         break;
                 }
             }
-            
+
+            translation = Ascii.toText(asciiArray);
+
+            System.out.println("+--------------------------------------------+");
+            System.out.println("|Do you want to cypher your text? :          |");
+            System.out.println("| 1. Caesar Cipher                           |");
+            System.out.println("| 2. Vigenere Cipher                         |");
+            System.out.println("| 3. Cipher 3                                |");
+            System.out.println("| 4. DONT CIPHER                             |");
+            System.out.println("+--------------------------------------------+");
+            System.out.print("Please choose an option: ");
+
+            boolean validChoice3 = false;
+            while(!validChoice3){
+                String choice3 = scanner.nextLine().trim().toLowerCase();
+                switch (choice3) {
+                    case "1":
+                    case "caesar cipher":
+                        System.out.print("Enter the shift value: ");
+                        int shift = scanner.nextInt();
+                        scanner.nextLine();
+                        translation = Cypher.CeasarCypher(translation, shift);
+                        validChoice3 = true;
+                        break;
+                    case "2":
+                    case "vigenere cipher":
+                        String key;
+                        do {
+                            System.out.print("Enter the key (alphabetic characters only): ");
+                            key = scanner.nextLine();
+                            if (!InputVerification.isAlphabeticText(key)) {
+                                System.out.println("Invalid key. The key must contain alphabetic characters only.");
+                            }
+                        } while (!InputVerification.isAlphabeticText(key));
+                        translation = Cypher.VigenereCypher(untranslation, key);
+                        validChoice3 = true;
+                        break;
+                    case "3":
+                    case "cipher 3":
+                        translation = Cypher.CeasarCypher(translation, 3);
+                        validChoice3 = true;
+                        break;
+                    case "4":
+                    case "dont cipher":
+                        validChoice3 = true;
+                        break;
+                    default:
+                        System.out.println("Invalid choice");
+                        break;
+                }
+            }
+
+            asciiArray = Text.toAscii(translation);
+
             System.out.println("+--------------------------------------------+");
             System.out.println("|Please choose the target format :           |");
             System.out.println("| 1. Decimal (-d)                            |");
@@ -159,6 +211,7 @@ public class Menu {
                         break;
                 }
             }
+
             System.out.println("Your untranslated string is: " + untranslation);           // Display the unstranslated string
             System.out.println("The translation is: " + translation);                       // Display the translation
             System.out.println("Press Enter to continue...");
