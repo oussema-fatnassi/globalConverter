@@ -232,9 +232,9 @@ public class Menu {
             System.out.println("| Cipher Type: " + cipherType);
             System.out.println("| Key Details: " + keyDetails);
             System.out.println("+--------------------------------------------+");
-            System.out.println("| Press ENTER to continue                     |");
+            System.out.println("| Press ENTER to continue                    |");
             System.out.println("+--------------------------------------------+");
-            String wait = scanner.nextLine();
+            scanner.nextLine();
             try {
                 String os = System.getProperty("os.name").toLowerCase();
                 ProcessBuilder processBuilder;
