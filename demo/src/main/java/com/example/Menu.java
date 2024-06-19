@@ -27,6 +27,21 @@ public class Menu {
             while (!validChoice) {
                 String choice = scanner.nextLine().trim().toLowerCase();
                 switch (choice) {
+                    case "-d":
+                    case "1":
+                    case "decimal":
+                        System.out.print("Enter a decimal string: ");
+                        String dec = scanner.nextLine();
+                        while (!InputVerification.isDecimal(dec)) {
+                            System.out.println("Invalid decimal string. Enter only 0-9.");
+                            System.out.print("Enter a decimal string: ");
+                            dec = scanner.nextLine();
+                        }
+                        dec = InputVerification.formatString(dec, 3);
+                        asciiArray = Decimal.toAscii(dec);
+                        untranslation = dec;
+                        validChoice = true;
+                        break;
                     case "-h":
                     case "2":
                     case "hexadecimal":
@@ -40,21 +55,6 @@ public class Menu {
                         hex = InputVerification.formatString(hex, 2);
                         asciiArray = Hexadecimal.toAscii(hex);
                         untranslation = hex;
-                        validChoice = true;
-                        break;
-                    case "-b":
-                    case "4":
-                    case "binary":
-                        System.out.print("Enter a binary string: ");
-                        String bin = scanner.nextLine().trim();
-                        while (!InputVerification.isBinary(bin)) {
-                            System.out.println("Invalid binary string. Enter only 0-1.");
-                            System.out.print("Enter a binary string: ");
-                            bin = scanner.nextLine().trim();
-                        }
-                        bin = InputVerification.formatString(bin, 8);
-                        asciiArray = Binary.toAscii(bin);
-                        untranslation = bin;
                         validChoice = true;
                         break;
                     case "-o":
@@ -72,19 +72,19 @@ public class Menu {
                         untranslation = oct;
                         validChoice = true;
                         break;
-                    case "-d":
-                    case "1":
-                    case "decimal":
-                        System.out.print("Enter a decimal string: ");
-                        String dec = scanner.nextLine();
-                        while (!InputVerification.isDecimal(dec)) {
-                            System.out.println("Invalid decimal string. Enter only 0-9.");
-                            System.out.print("Enter a decimal string: ");
-                            dec = scanner.nextLine();
+                    case "-b":
+                    case "4":
+                    case "binary":
+                        System.out.print("Enter a binary string: ");
+                        String bin = scanner.nextLine().trim();
+                        while (!InputVerification.isBinary(bin)) {
+                            System.out.println("Invalid binary string. Enter only 0-1.");
+                            System.out.print("Enter a binary string: ");
+                            bin = scanner.nextLine().trim();
                         }
-                        dec = InputVerification.formatString(dec, 3);
-                        asciiArray = Decimal.toAscii(dec);
-                        untranslation = dec;
+                        bin = InputVerification.formatString(bin, 8);
+                        asciiArray = Binary.toAscii(bin);
+                        untranslation = bin;
                         validChoice = true;
                         break;
                     case "-t":
@@ -287,16 +287,16 @@ public class Menu {
             while (!validChoice5) {
                 String choice5 = scanner.nextLine().trim().toLowerCase();
                 switch (choice5) {
+                    case "-d":
+                    case "1":
+                    case "decimal":
+                        translation = Ascii.toDecimal(asciiArray);
+                        validChoice5 = true;
+                        break;
                     case "-h":
                     case "2":
                     case "hexadecimal":
                         translation = Ascii.toHexadecimal(asciiArray);
-                        validChoice5 = true;
-                        break;
-                    case "-b":
-                    case "4":
-                    case "binary":
-                        translation = Ascii.toBinary(asciiArray);
                         validChoice5 = true;
                         break;
                     case "-o":
@@ -305,10 +305,10 @@ public class Menu {
                         translation = Ascii.toOctal(asciiArray);
                         validChoice5 = true;
                         break;
-                    case "-d":
-                    case "1":
-                    case "decimal":
-                        translation = Ascii.toDecimal(asciiArray);
+                    case "-b":
+                    case "4":
+                    case "binary":
+                        translation = Ascii.toBinary(asciiArray);
                         validChoice5 = true;
                         break;
                     case "-t":
