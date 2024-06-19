@@ -23,4 +23,16 @@ public class InputVerification {                        // Class to verify the i
 public static boolean isAlphabeticText(String input) {
         return input.matches("[a-zA-Z]+"); 
     }
+
+    public static String formatString(String input, int chunkSize) {
+        StringBuilder formattedString = new StringBuilder();
+        for (int i = 0; i < input.length(); i += chunkSize) {
+            if (i + chunkSize > input.length()) {
+                formattedString.append(input.substring(i));
+            } else {
+                formattedString.append(input, i, i + chunkSize).append(" ");
+            }
+        }
+        return formattedString.toString().trim();
+    }
 }

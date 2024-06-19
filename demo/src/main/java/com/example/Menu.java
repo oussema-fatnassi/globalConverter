@@ -37,6 +37,7 @@ public class Menu {
                             System.out.print("Enter a hexadecimal string: ");
                             hex = scanner.nextLine().trim();
                         }
+                        hex = InputVerification.formatString(hex, 2);
                         asciiArray = Hexadecimal.toAscii(hex);
                         untranslation = hex;
                         validChoice = true;
@@ -51,6 +52,7 @@ public class Menu {
                             System.out.print("Enter a binary string: ");
                             bin = scanner.nextLine().trim();
                         }
+                        bin = InputVerification.formatString(bin, 8);
                         asciiArray = Binary.toAscii(bin);
                         untranslation = bin;
                         validChoice = true;
@@ -65,6 +67,7 @@ public class Menu {
                             System.out.print("Enter an octal string: ");
                             oct = scanner.nextLine().trim();
                         }
+                        oct = InputVerification.formatString(oct, 3);
                         asciiArray = Octal.toAscii(oct);
                         untranslation = oct;
                         validChoice = true;
@@ -79,6 +82,7 @@ public class Menu {
                             System.out.print("Enter a decimal string: ");
                             dec = scanner.nextLine();
                         }
+                        dec = InputVerification.formatString(dec, 3);
                         asciiArray = Decimal.toAscii(dec);
                         untranslation = dec;
                         validChoice = true;
