@@ -1,6 +1,6 @@
 package com.example;
-public class Hexadecimal {                                      
-    public static int[] toAscii(String input) {                 
+public class Hexadecimal {                                          // Class to convert hexadecimal to ASCII
+    public static int[] toAscii(String input) {                     // Method to convert hexadecimal to ASCII       
         String[] hexArray = input.split("\\s+");
         int[] asciiArray = new int[hexArray.length];
         

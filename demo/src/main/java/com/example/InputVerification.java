@@ -20,11 +20,11 @@ public class InputVerification {                        // Class to verify the i
         return input.matches("[a-zA-Z0-9\\s]+"); 
     }
 
-public static boolean isAlphabeticText(String input) {
-        return input.matches("[a-zA-Z]+"); 
-    }
+    public static boolean isAlphabeticText(String input) {
+            return input.matches("[a-zA-Z]+"); 
+        }
 
-    public static String formatString(String input, int chunkSize) {
+    public static String formatString(String input, int chunkSize) {        // Method to format the string into chunks
         StringBuilder formattedString = new StringBuilder();
         for (int i = 0; i < input.length(); i += chunkSize) {
             if (i + chunkSize > input.length()) {
