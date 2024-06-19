@@ -128,9 +128,16 @@ public class Menu {
                 switch (choice3) {
                     case "1":
                     case "caesar cipher":
-                        System.out.print("Enter the shift value: ");
-                        int shift = scanner.nextInt();
-                        scanner.nextLine();
+                        int shift;
+                        while (true) {
+                            try {
+                                System.out.print("Enter the shift value (must be a number): ");
+                                shift = Integer.parseInt(scanner.nextLine().trim());
+                                break;
+                            } catch (NumberFormatException e) {
+                                System.out.println("Invalid input. Shift value must be a number.");
+                            }
+                        }
                         translation = Cipher.CeasarCipher(translation, shift);
                         cipherType = "Caesar Cipher";
                         keyDetails = "Shift: " + shift;
