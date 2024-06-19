@@ -1,8 +1,8 @@
 package com.example;
 
-public class Cypher {
+public class Cipher {
     
-    public static String CeasarCypher(String text, int shift) {
+    public static String CeasarCipher(String text, int shift) {
         String result = "";
         for (int i = 0; i < text.length(); i++) {
             char c = text.charAt(i);
@@ -19,11 +19,11 @@ public class Cypher {
         return result;
     }
 
-    public static String CeasarDecypher(String text, int shift) {
-        return CeasarCypher(text, 26 - shift);
+    public static String CeasarDecipher(String text, int shift) {
+        return CeasarCipher(text, 26 - shift);
     }
 
-    public static String VigenereCypher(String text, String key) {
+    public static String VigenereCipher(String text, String key) {
         StringBuilder result = new StringBuilder();
         key = key.toLowerCase();
         int keyIndex = 0;
@@ -44,7 +44,7 @@ public class Cypher {
         return result.toString();
     }
 
-    public static String VigenereDecypher(String text, String key) {
+    public static String VigenereDecipher(String text, String key) {
         StringBuilder result = new StringBuilder();
         key = key.toLowerCase();
         int keyIndex = 0;

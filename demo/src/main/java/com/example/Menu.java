@@ -9,7 +9,7 @@ public class Menu {
             System.out.println("|             ASCII Converter                |");
             System.out.println("|   by Oussema F., Baptiste A., Ali A. I.    |");
             System.out.println("+--------------------------------------------+");
-            System.out.println("|Please choose the starting format :         |");
+            System.out.println("| Please choose the starting format :        |");
             System.out.println("| 1. Decimal (-d)                            |");
             System.out.println("| 2. Hexadecimal (-h)                        |");
             System.out.println("| 3. Octal (-o)                              |");
@@ -109,9 +109,9 @@ public class Menu {
             }
 
             translation = Ascii.toText(asciiArray);
-
+            System.out.println();
             System.out.println("+--------------------------------------------+");
-            System.out.println("|Do you want to cypher your text? :          |");
+            System.out.println("| Do you want to cypher your text? :         |");
             System.out.println("| 1. Caesar Cipher                           |");
             System.out.println("| 2. Vigenere Cipher                         |");
             System.out.println("| 3. Cipher 3                                |");
@@ -120,6 +120,9 @@ public class Menu {
             System.out.print("Please choose an option: ");
 
             boolean validChoice3 = false;
+            String cipherType = "";
+            String keyDetails = "";
+
             while(!validChoice3){
                 String choice3 = scanner.nextLine().trim().toLowerCase();
                 switch (choice3) {
@@ -128,25 +131,28 @@ public class Menu {
                         System.out.print("Enter the shift value: ");
                         int shift = scanner.nextInt();
                         scanner.nextLine();
-                        translation = Cypher.CeasarCypher(translation, shift);
+                        translation = Cipher.CeasarCipher(translation, shift);
+                        cipherType = "Caesar Cipher";
+                        keyDetails = "Shift: " + shift;
                         validChoice3 = true;
                         break;
                     case "2":
                     case "vigenere cipher":
-                        String key;
-                        do {
-                            System.out.print("Enter the key (alphabetic characters only): ");
-                            key = scanner.nextLine();
-                            if (!InputVerification.isAlphabeticText(key)) {
-                                System.out.println("Invalid key. The key must contain alphabetic characters only.");
-                            }
-                        } while (!InputVerification.isAlphabeticText(key));
-                        translation = Cypher.VigenereCypher(untranslation, key);
+                        System.out.print("Enter the key (must be a word): ");
+                        String vigenereKey = scanner.nextLine().trim().toUpperCase();
+                        while (!InputVerification.isText(vigenereKey)) {
+                            System.out.println("Invalid key. Please enter a word.");
+                            System.out.print("Enter the key: ");
+                            vigenereKey = scanner.nextLine().trim().toUpperCase();
+                        }
+                        translation = Cipher.VigenereCipher(translation, vigenereKey);
+                        cipherType = "Vigenere Cipher";
+                        keyDetails = "Key: " + vigenereKey;
                         validChoice3 = true;
                         break;
                     case "3":
                     case "cipher 3":
-                        translation = Cypher.CeasarCypher(translation, 3);
+                        translation = Cipher.CeasarCipher(translation, 3);
                         validChoice3 = true;
                         break;
                     case "4":
@@ -161,8 +167,9 @@ public class Menu {
 
             asciiArray = Text.toAscii(translation);
 
+            System.out.println();
             System.out.println("+--------------------------------------------+");
-            System.out.println("|Please choose the target format :           |");
+            System.out.println("| Please choose the target format :          |");
             System.out.println("| 1. Decimal (-d)                            |");
             System.out.println("| 2. Hexadecimal (-h)                        |");
             System.out.println("| 3. Octal (-o)                              |");
@@ -211,10 +218,15 @@ public class Menu {
                         break;
                 }
             }
-
-            System.out.println("Your untranslated string is: " + untranslation);           // Display the unstranslated string
-            System.out.println("The translation is: " + translation);                       // Display the translation
-            System.out.println("Press Enter to continue...");
+            System.out.println();
+            System.out.println("+--------------------------------------------+");
+            System.out.println("| Original: " + untranslation);
+            System.out.println("| Translation: " + translation);
+            System.out.println("| Cipher Type: " + cipherType);
+            System.out.println("| Key Details: " + keyDetails);
+            System.out.println("+--------------------------------------------+");
+            System.out.println("| Press ENTER to continue                     |");
+            System.out.println("+--------------------------------------------+");
             String wait = scanner.nextLine();
             try {
                 String os = System.getProperty("os.name").toLowerCase();
