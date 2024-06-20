@@ -39,9 +39,14 @@
                         <Insets left="20.0" top="20.0" />
                      </padding>
                   </TextField>
+                  <Button fx:id="invertButton" mnemonicParsing="false" prefHeight="51.0" prefWidth="119.0" text="&lt;-">
+                     <HBox.margin>
+                        <Insets left="10.0" top="90.0" />
+                     </HBox.margin>
+                  </Button>
                   <Label fx:id="resultLabel" alignment="TOP_LEFT" prefHeight="200.0" prefWidth="400.0" style="-fx-background-color: WHITE;" text="Result">
                      <HBox.margin>
-                        <Insets left="100.0" top="20.0" />
+                        <Insets left="10.0" right="50.0" top="20.0" />
                      </HBox.margin>
                      <padding>
                         <Insets left="20.0" top="20.0" />
@@ -116,9 +121,14 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="convertButton" mnemonicParsing="false" prefHeight="69.0" prefWidth="131.0" style="-fx-background-color: WHITE;" text="CONVERT">
+                  <Button fx:id="convertButton" mnemonicParsing="false" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: WHITE;" text="CONVERT">
                      <HBox.margin>
                         <Insets top="20.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="resetButton" mnemonicParsing="false" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: WHITE;" text="RESET">
+                     <HBox.margin>
+                        <Insets left="50.0" top="20.0" />
                      </HBox.margin>
                   </Button>
                </children>
