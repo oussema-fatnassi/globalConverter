@@ -131,6 +131,11 @@
                         <Insets left="50.0" top="20.0" />
                      </HBox.margin>
                   </Button>
+                  <Button fx:id="saveButton" mnemonicParsing="false" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: WHITE;" text="SAVE">
+                     <HBox.margin>
+                        <Insets left="50.0" top="20.0" />
+                     </HBox.margin>
+                  </Button>
                </children>
             </HBox>
          </children>

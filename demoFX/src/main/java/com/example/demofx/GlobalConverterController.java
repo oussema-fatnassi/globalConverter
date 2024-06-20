@@ -4,6 +4,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -19,6 +22,8 @@ public class GlobalConverterController implements Initializable {
     private Button resetButton;
     @FXML
     private Button invertButton;
+    @FXML
+    private Button saveButton;
     @FXML
     private ComboBox<String> originalFormat;
     @FXML
@@ -45,6 +50,7 @@ public class GlobalConverterController implements Initializable {
         convertButton.setOnAction(event -> handleConvert());
         resetButton.setOnAction(event -> handleReset());
         invertButton.setOnAction(event -> handleInvert());
+        saveButton.setOnAction(event -> handleSave());
     }
 
     private void handleConvert() {
@@ -225,5 +231,35 @@ public class GlobalConverterController implements Initializable {
                 setText(empty ? "Select cipher type" : item);
             }
         });
+    }
+
+    private void handleSave() {
+        // Collect the current values of the fields
+        String originalInput = originalTextField.getText();
+        String result = resultLabel.getText();
+        String originalFormatValue = originalFormat.getValue();
+        String resultFormatValue = targetFormat.getValue();
+        String selectedOperation = operation.getValue();
+        String selectedCipherType = cipherType.getValue();
+        String key = cipherKey.getText();
+
+        // Validate that we have a result to save
+        if (result.isEmpty() || originalInput.isEmpty() || originalFormatValue == null || resultFormatValue == null || selectedOperation == null) {
+            resultLabel.setText("Nothing to save or some fields are missing.");
+            return;
+        }
+
+        // Create the CSV line
+        String csvLine = String.join(",", originalInput, result, originalFormatValue, resultFormatValue, selectedOperation, selectedCipherType != null ? selectedCipherType : "", key != null ? key : "");
+
+        // Write the CSV line to a file
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("conversion_results.csv", true))) {
+            writer.write(csvLine);
+            writer.newLine();
+            resultLabel.setText("Result saved successfully.");
+        } catch (IOException e) {
+            resultLabel.setText("Failed to save result.");
+            e.printStackTrace();
+        }
     }
 }
