@@ -10,9 +10,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class GlobalConverterController implements Initializable {
+public class GlobalConverterController implements Initializable {                                                           // Class to handle the GUI
 
-    @FXML
+    @FXML                                                                                                                   // Annotation to inject the FXML elements
     private TextField originalTextField;
     @FXML
     private Label resultLabel;
@@ -36,24 +36,24 @@ public class GlobalConverterController implements Initializable {
     private TextField cipherKey;
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        originalFormat.getItems().addAll("Text", "Decimal", "Binary", "Hexadecimal", "Octal");
+    public void initialize(URL url, ResourceBundle resourceBundle) {                                                        // Method to initialize the GUI
+        originalFormat.getItems().addAll("Text", "Decimal", "Binary", "Hexadecimal", "Octal");                         // Add items to the ComboBoxes
         targetFormat.getItems().addAll("Text", "Decimal", "Binary", "Hexadecimal", "Octal");
         operation.getItems().addAll("Cipher", "Decipher", "Convert");
         cipherType.getItems().addAll("Caesar", "Vigenere", "Atbash");
 
-        originalFormat.setPromptText("Select original format");
+        originalFormat.setPromptText("Select original format");                                                             // Set the prompt text for the ComboBoxes
         targetFormat.setPromptText("Select target format");
         operation.setPromptText("Select operation");
         cipherType.setPromptText("Select cipher type");
 
-        convertButton.setOnAction(event -> handleConvert());
+        convertButton.setOnAction(event -> handleConvert());                                                                // Set the event handlers for the buttons
         resetButton.setOnAction(event -> handleReset());
         invertButton.setOnAction(event -> handleInvert());
         saveButton.setOnAction(event -> handleSave());
     }
 
-    private void handleConvert() {
+    private void handleConvert() {                                                                                          // Method to handle the conversion
         String input = originalTextField.getText();
         String fromFormat = originalFormat.getValue();
         String toFormat = targetFormat.getValue();
@@ -62,18 +62,18 @@ public class GlobalConverterController implements Initializable {
         String key = cipherKey.getText();
 
         if (input.isEmpty() || fromFormat == null || toFormat == null || selectedOperation == null) {
-            resultLabel.setText("Please fill all fields.");
+            showAlert("Missing Input", "Please fill all fields.");
             return;
         }
 
-        ConversionResult conversionResult = convertToAscii(input, fromFormat);
+        ConversionResult conversionResult = convertToAscii(input, fromFormat);                                              // Convert the input to ASCII
         if (conversionResult.getErrorMessage() != null) {
-            resultLabel.setText(conversionResult.getErrorMessage());
+            showAlert("Conversion Error", conversionResult.getErrorMessage());
             return;
         }
 
         int[] asciiArray = conversionResult.getAsciiArray();
-        String result = switch (selectedOperation) {
+        String result = switch (selectedOperation) {                                                                        // Perform the selected operation
             case "Cipher" -> handleCipher(new String(asciiArray, 0, asciiArray.length), selectedCipherType, key);
             case "Decipher" -> handleDecipher(new String(asciiArray, 0, asciiArray.length), selectedCipherType, key);
             case "Convert" -> convertFromAscii(asciiArray, toFormat);
@@ -83,7 +83,15 @@ public class GlobalConverterController implements Initializable {
         resultLabel.setText(result);
     }
 
-    private ConversionResult convertToAscii(String input, String format) {
+    private void showAlert(String headerText, String contentText) {                                                         // Method to show an alert
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(headerText);
+        alert.setContentText(contentText);
+        alert.showAndWait();
+    }
+
+    private ConversionResult convertToAscii(String input, String format) {                                                  // Method to convert the input to ASCII
         switch (format) {
             case "Decimal":
                 if (InputVerification.isDecimal(input)) {
@@ -120,7 +128,7 @@ public class GlobalConverterController implements Initializable {
         }
     }
 
-    private String convertFromAscii(int[] asciiArray, String format) {
+    private String convertFromAscii(int[] asciiArray, String format) {                                                      // Method to convert the ASCII to the target format
         return switch (format) {
             case "Decimal" -> Ascii.toDecimal(asciiArray);
             case "Hexadecimal" -> Ascii.toHexadecimal(asciiArray);
@@ -131,7 +139,7 @@ public class GlobalConverterController implements Initializable {
         };
     }
 
-    private String handleCipher(String input, String cipherType, String key) {
+    private String handleCipher(String input, String cipherType, String key) {                                              // Method to handle the cipher
         switch (cipherType) {
             case "Caesar":
                 try {
@@ -153,7 +161,7 @@ public class GlobalConverterController implements Initializable {
         }
     }
 
-    private String handleDecipher(String input, String cipherType, String key) {
+    private String handleDecipher(String input, String cipherType, String key) {                                            // Method to handle the decipher
         switch (cipherType) {
             case "Caesar":
                 try {
@@ -175,35 +183,31 @@ public class GlobalConverterController implements Initializable {
         }
     }
 
-    private void handleInvert() {
-        // Swap the text between the originalTextField and resultLabel
-        String originalText = originalTextField.getText();
+    private void handleInvert() {                                                                                           // Method to handle the invert operation
+        String originalText = originalTextField.getText();                                                                  // Swap the text in the originalTextField and resultLabel
         String resultText = resultLabel.getText();
 
         originalTextField.setText(resultText);
         resultLabel.setText(originalText);
 
-        // Swap the selected items in the originalFormat and targetFormat ComboBoxes
-        String originalFormatValue = originalFormat.getValue();
+        String originalFormatValue = originalFormat.getValue();                                                             // Swap the values in the originalFormat and targetFormat ComboBoxes
         String targetFormatValue = targetFormat.getValue();
 
         originalFormat.setValue(targetFormatValue);
         targetFormat.setValue(originalFormatValue);
     }
 
-    private void handleReset() {
+    private void handleReset() {                                                                                            // Method to handle the reset operation
         originalTextField.clear();
         resultLabel.setText("");
         cipherKey.clear();
 
-        // Clear selection and reset prompt text
-        originalFormat.getSelectionModel().clearSelection();
+        originalFormat.getSelectionModel().clearSelection();                                                                // Clear the selections in the ComboBoxes
         targetFormat.getSelectionModel().clearSelection();
         operation.getSelectionModel().clearSelection();
         cipherType.getSelectionModel().clearSelection();
 
-        // Ensure prompt text is displayed after reset
-        originalFormat.setButtonCell(new ListCell<>() {
+        originalFormat.setButtonCell(new ListCell<>() {                                                                     // Set the prompt text for the ComboBoxes
             @Override
             protected void updateItem(String item, boolean empty) {
                 super.updateItem(item, empty);
@@ -233,9 +237,8 @@ public class GlobalConverterController implements Initializable {
         });
     }
 
-    private void handleSave() {
-        // Collect the current values of the fields
-        String originalInput = originalTextField.getText();
+    private void handleSave() {                                                                                             // Method to handle the save operation
+        String originalInput = originalTextField.getText();                                                                 // Get the values of the input fields
         String result = resultLabel.getText();
         String originalFormatValue = originalFormat.getValue();
         String resultFormatValue = targetFormat.getValue();
@@ -243,23 +246,35 @@ public class GlobalConverterController implements Initializable {
         String selectedCipherType = cipherType.getValue();
         String key = cipherKey.getText();
 
-        // Validate that we have a result to save
-        if (result.isEmpty() || originalInput.isEmpty() || originalFormatValue == null || resultFormatValue == null || selectedOperation == null) {
-            resultLabel.setText("Nothing to save or some fields are missing.");
+        if (result.isEmpty() || originalInput.isEmpty() || originalFormatValue == null || resultFormatValue == null || selectedOperation == null) {     // Check if the fields are empty or missing values or conversion error
+            showAlert(Alert.AlertType.ERROR, "Error", "Save Error", "Nothing to save or some fields are missing.");
             return;
         }
 
-        // Create the CSV line
-        String csvLine = String.join(",", originalInput, result, originalFormatValue, resultFormatValue, selectedOperation, selectedCipherType != null ? selectedCipherType : "", key != null ? key : "");
+        ConversionResult conversionResult = convertToAscii(originalInput, originalFormatValue);
+        if (conversionResult.getErrorMessage() != null) {
+            showAlert(Alert.AlertType.ERROR, "Error", "Save Error", conversionResult.getErrorMessage());
+            return;
+        }
 
-        // Write the CSV line to a file
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("conversion_results.csv", true))) {
+        String csvLine = String.join(",", originalInput, result, originalFormatValue, resultFormatValue, selectedOperation, selectedCipherType != null ? selectedCipherType : "", key != null ? key : "");      // Create the CSV line
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("conversion_results.csv", true))) {                      // Write the CSV line to the file
             writer.write(csvLine);
             writer.newLine();
-            resultLabel.setText("Result saved successfully.");
+            showAlert(Alert.AlertType.INFORMATION, "Save Successful", null, "Result saved successfully.");
         } catch (IOException e) {
-            resultLabel.setText("Failed to save result.");
+            showAlert(Alert.AlertType.ERROR, "Error", "Save Error", "Failed to save result.");
             e.printStackTrace();
         }
     }
+
+    private void showAlert(Alert.AlertType alertType, String title, String headerText, String contentText) {                // Method to show an alert with custom parameters
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(headerText);
+        alert.setContentText(contentText);
+        alert.showAndWait();
+    }
+
 }

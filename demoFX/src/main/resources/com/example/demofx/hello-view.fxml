@@ -44,7 +44,7 @@
                         <Insets left="10.0" top="90.0" />
                      </HBox.margin>
                   </Button>
-                  <Label fx:id="resultLabel" alignment="TOP_LEFT" prefHeight="200.0" prefWidth="400.0" style="-fx-background-color: WHITE;" text="Result">
+                  <Label fx:id="resultLabel" alignment="TOP_LEFT" prefHeight="200.0" prefWidth="400.0" style="-fx-background-color: WHITE;">
                      <HBox.margin>
                         <Insets left="10.0" right="50.0" top="20.0" />
                      </HBox.margin>
