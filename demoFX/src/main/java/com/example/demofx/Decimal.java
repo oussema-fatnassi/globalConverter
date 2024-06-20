@@ -1,5 +1,7 @@
 package com.example.demofx;
+
 public class Decimal {                                              // Class to convert decimal to ASCII
+
     public static int[] toAscii(String input) {                     // Method to convert decimal to ASCII
         String[] decimalStrings = input.split(" ");
         int[] asciiArray = new int[decimalStrings.length];

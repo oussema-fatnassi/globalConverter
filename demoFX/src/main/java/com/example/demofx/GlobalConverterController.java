@@ -7,9 +7,9 @@ import javafx.scene.control.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class GlobalConverterController implements Initializable {
+public class GlobalConverterController implements Initializable {                                               // Class to handle the conversion and cipher operations
 
-    @FXML
+    @FXML                                                                                                       // Annotation to inject the FXML elements
     private TextField originalTextField;
     @FXML
     private Label resultLabel;
@@ -27,16 +27,16 @@ public class GlobalConverterController implements Initializable {
     private TextField cipherKey;
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize(URL url, ResourceBundle resourceBundle) {                                            // Method to initialize the controller
         originalFormat.getItems().addAll("Text", "Decimal", "Binary", "Hexadecimal", "Octal");
         targetFormat.getItems().addAll("Text", "Decimal", "Binary", "Hexadecimal", "Octal");
         operation.getItems().addAll("Cipher", "Decipher", "Convert");
         cipherType.getItems().addAll("Caesar", "Vigenere", "Atbash");
 
-        convertButton.setOnAction(event -> handleConvert());
+        convertButton.setOnAction(event -> handleConvert());                                                    // Set the action for the convert button
     }
 
-    private void handleConvert() {
+    private void handleConvert() {                                                                              // Method to handle the conversion
         String input = originalTextField.getText();
         String fromFormat = originalFormat.getValue();
         String toFormat = targetFormat.getValue();
@@ -56,7 +56,7 @@ public class GlobalConverterController implements Initializable {
         }
 
         int[] asciiArray = conversionResult.getAsciiArray();
-        String result = switch (selectedOperation) {
+        String result = switch (selectedOperation) {                                                            // Switch statement to handle the operation selected by the user
             case "Cipher" -> handleCipher(new String(asciiArray, 0, asciiArray.length), selectedCipherType, key);
             case "Decipher" -> handleDecipher(new String(asciiArray, 0, asciiArray.length), selectedCipherType, key);
             case "Convert" -> convertFromAscii(asciiArray, toFormat);
@@ -66,7 +66,7 @@ public class GlobalConverterController implements Initializable {
         resultLabel.setText(result);
     }
 
-    private ConversionResult convertToAscii(String input, String format) {
+    private ConversionResult convertToAscii(String input, String format) {                                      // Method to convert the input to ASCII
         switch (format) {
             case "Decimal":
                 if (InputVerification.isDecimal(input)) {
@@ -103,7 +103,7 @@ public class GlobalConverterController implements Initializable {
         }
     }
 
-    private String convertFromAscii(int[] asciiArray, String format) {
+    private String convertFromAscii(int[] asciiArray, String format) {                                          // Method to convert ASCII to the target format
         return switch (format) {
             case "Decimal" -> Ascii.toDecimal(asciiArray);
             case "Hexadecimal" -> Ascii.toHexadecimal(asciiArray);
@@ -114,7 +114,7 @@ public class GlobalConverterController implements Initializable {
         };
     }
 
-    private String handleCipher(String input, String cipherType, String key) {
+    private String handleCipher(String input, String cipherType, String key) {                                  // Method to handle the cipher operation selected by the user
         switch (cipherType) {
             case "Caesar":
                 try {
@@ -124,7 +124,7 @@ public class GlobalConverterController implements Initializable {
                     return "Invalid Caesar cipher key. Must be a number.";
                 }
             case "Vigenere":
-                if (InputVerification.isText(key)) {
+                if (InputVerification.isAlphabeticText(key)) {
                     return Cipher.VigenereCipher(input, key.toUpperCase());
                 } else {
                     return "Invalid Vigenere cipher key. Must be a word.";
@@ -136,7 +136,7 @@ public class GlobalConverterController implements Initializable {
         }
     }
 
-    private String handleDecipher(String input, String cipherType, String key) {
+    private String handleDecipher(String input, String cipherType, String key) {                                // Method to handle the decipher operation selected by the user
         switch (cipherType) {
             case "Caesar":
                 try {

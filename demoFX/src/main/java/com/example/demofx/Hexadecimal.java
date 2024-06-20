@@ -1,5 +1,7 @@
 package com.example.demofx;
+
 public class Hexadecimal {                                          // Class to convert hexadecimal to ASCII
+
     public static int[] toAscii(String input) {                     // Method to convert hexadecimal to ASCII       
         String[] hexArray = input.split("\\s+");
         int[] asciiArray = new int[hexArray.length];
@@ -13,7 +15,7 @@ public class Hexadecimal {                                          // Class to 
         return asciiArray;
     }
 
-    public static int hexToDecimal(String hex) {                
+    public static int hexToDecimal(String hex) {                    // Method to convert hexadecimal to decimal
         return Integer.parseInt(hex, 16);
     }
 }

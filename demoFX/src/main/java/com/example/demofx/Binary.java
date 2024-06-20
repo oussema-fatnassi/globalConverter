@@ -1,5 +1,7 @@
 package com.example.demofx;
+
 public class Binary {                                               // Class to convert binary to ASCII
+
     public static int[] toAscii(String input) {                     // Method to convert binary to ASCII
         String[] binaryArray = input.split("\\s+");
         int[] asciiArray = new int[binaryArray.length];
