@@ -13,7 +13,7 @@ import java.util.ResourceBundle;
 public class GlobalConverterController implements Initializable {                                                           // Class to handle the GUI
 
     @FXML                                                                                                                   // Annotation to inject the FXML elements
-    private TextField originalTextField;
+    private TextArea originalTextArea;
     @FXML
     private Label resultLabel;
     @FXML
@@ -47,6 +47,9 @@ public class GlobalConverterController implements Initializable {               
         operation.setPromptText("Select operation");
         cipherType.setPromptText("Select cipher type");
 
+        originalTextArea.setWrapText(true);
+        resultLabel.setWrapText(true);
+
         convertButton.setOnAction(event -> handleConvert());                                                                // Set the event handlers for the buttons
         resetButton.setOnAction(event -> handleReset());
         invertButton.setOnAction(event -> handleInvert());
@@ -54,7 +57,7 @@ public class GlobalConverterController implements Initializable {               
     }
 
     private void handleConvert() {                                                                                          // Method to handle the conversion
-        String input = originalTextField.getText();
+        String input = originalTextArea.getText();
         String fromFormat = originalFormat.getValue();
         String toFormat = targetFormat.getValue();
         String selectedOperation = operation.getValue();
@@ -184,10 +187,10 @@ public class GlobalConverterController implements Initializable {               
     }
 
     private void handleInvert() {                                                                                           // Method to handle the invert operation
-        String originalText = originalTextField.getText();                                                                  // Swap the text in the originalTextField and resultLabel
+        String originalText = originalTextArea.getText();                                                                  // Swap the text in the originalTextField and resultLabel
         String resultText = resultLabel.getText();
 
-        originalTextField.setText(resultText);
+        originalTextArea.setText(resultText);
         resultLabel.setText(originalText);
 
         String originalFormatValue = originalFormat.getValue();                                                             // Swap the values in the originalFormat and targetFormat ComboBoxes
@@ -198,7 +201,7 @@ public class GlobalConverterController implements Initializable {               
     }
 
     private void handleReset() {                                                                                            // Method to handle the reset operation
-        originalTextField.clear();
+        originalTextArea.clear();
         resultLabel.setText("");
         cipherKey.clear();
 
@@ -238,7 +241,7 @@ public class GlobalConverterController implements Initializable {               
     }
 
     private void handleSave() {                                                                                             // Method to handle the save operation
-        String originalInput = originalTextField.getText();                                                                 // Get the values of the input fields
+        String originalInput = originalTextArea.getText();                                                                 // Get the values of the input fields
         String result = resultLabel.getText();
         String originalFormatValue = originalFormat.getValue();
         String resultFormatValue = targetFormat.getValue();

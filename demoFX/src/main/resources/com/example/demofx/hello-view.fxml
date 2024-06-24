@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -29,16 +30,13 @@
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="263.0" prefWidth="1000.0">
+            <HBox prefHeight="222.0" prefWidth="1000.0">
                <children>
-                  <TextField fx:id="originalTextField" alignment="TOP_LEFT" prefHeight="200.0" prefWidth="400.0">
+                  <TextArea fx:id="originalTextArea" prefHeight="150.0" prefWidth="400.0">
                      <HBox.margin>
                         <Insets left="50.0" top="20.0" />
                      </HBox.margin>
-                     <padding>
-                        <Insets left="20.0" top="20.0" />
-                     </padding>
-                  </TextField>
+                  </TextArea>
                   <Button fx:id="invertButton" mnemonicParsing="false" prefHeight="51.0" prefWidth="119.0" text="&lt;-">
                      <HBox.margin>
                         <Insets left="10.0" top="90.0" />
@@ -54,12 +52,15 @@
                   </Label>
                </children>
             </HBox>
-            <HBox prefHeight="39.0" prefWidth="1000.0">
+            <HBox prefHeight="104.0" prefWidth="950.0">
                <children>
-                  <Label prefHeight="0.0" prefWidth="279.0" text="Select the format of the string that you are entering" />
+                  <Label prefHeight="0.0" prefWidth="279.0" text="Select the format of the string that you are entering">
+                     <HBox.margin>
+                        <Insets top="70.0" />
+                     </HBox.margin></Label>
                   <Label text="Select the format you want to convert to">
                      <HBox.margin>
-                        <Insets left="220.0" />
+                        <Insets left="220.0" top="70.0" />
                      </HBox.margin>
                   </Label>
                </children>
@@ -67,7 +68,7 @@
                   <Insets left="50.0" />
                </VBox.margin>
             </HBox>
-            <HBox prefHeight="127.0" prefWidth="1000.0">
+            <HBox prefHeight="89.0" prefWidth="1000.0">
                <children>
                   <ComboBox fx:id="originalFormat" prefHeight="20.0" prefWidth="400.0" promptText="ORIGINAL FORMAT" style="-fx-background-color: WHITE;">
                      <HBox.margin>
@@ -121,7 +122,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="convertButton" mnemonicParsing="false" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: WHITE;" text="CONVERT">
+                  <Button fx:id="convertButton" mnemonicParsing="false" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: WHITE;" text="START">
                      <HBox.margin>
                         <Insets top="20.0" />
                      </HBox.margin>
