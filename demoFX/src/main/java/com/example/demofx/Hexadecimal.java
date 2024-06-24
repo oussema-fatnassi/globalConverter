@@ -1,17 +1,15 @@
 package com.example.demofx;
 
-public class Hexadecimal {                                          // Class to convert hexadecimal to ASCII
+public class Hexadecimal {                                                                                              // Class to convert hexadecimal to ASCII
 
-    public static int[] toAscii(String input) {                     // Method to convert hexadecimal to ASCII
-        // Remove any spaces from the input string
-        input = input.replaceAll("\\s+", "");
+    public static int[] toAscii(String input) {
+        input = input.replaceAll("\\s+", "");                                                         // Remove any spaces from the input string
 
-        // Split the input into chunks of 2 characters (each hex digit pair represents a byte)
-        int chunkSize = 2;
+        int chunkSize = 2;                                                                                              // Split the input into chunks of 2 characters (each hex digit pair represents a byte)
         int numChunks = (int) Math.ceil(input.length() / (double) chunkSize);
         int[] asciiArray = new int[numChunks];
 
-        for (int i = 0; i < numChunks; i++) {
+        for (int i = 0; i < numChunks; i++) {                                                                           // Convert each chunk to an ASCII value
             String chunk = input.substring(i * chunkSize, Math.min(input.length(), (i + 1) * chunkSize));
             int asciiValue = hexToDecimal(chunk);
             asciiArray[i] = asciiValue;
@@ -20,7 +18,7 @@ public class Hexadecimal {                                          // Class to 
         return asciiArray;
     }
 
-    public static int hexToDecimal(String hex) {                    // Method to convert hexadecimal to decimal
+    public static int hexToDecimal(String hex) {                                                                        // Method to convert hexadecimal to decimal
         return Integer.parseInt(hex, 16);
     }
 }

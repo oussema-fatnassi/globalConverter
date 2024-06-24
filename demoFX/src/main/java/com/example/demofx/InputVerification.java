@@ -1,5 +1,5 @@
 package com.example.demofx;
-public class InputVerification {                        // Class to verify the input for each type of input
+public class InputVerification {                                                                                        // Class to verify the input for each type of input
     public static boolean isBinary(String input) {
         return input.matches("[01\\s]+");
     }
@@ -24,7 +24,7 @@ public class InputVerification {                        // Class to verify the i
             return input.matches("[a-zA-Z]+"); 
         }
 
-    public static String formatString(String input, int chunkSize) {        // Method to format the string into chunks
+    public static String formatString(String input, int chunkSize) {                                                    // Method to format the string into chunks
         StringBuilder formattedString = new StringBuilder();
         for (int i = 0; i < input.length(); i += chunkSize) {
             if (i + chunkSize > input.length()) {

@@ -3,23 +3,19 @@ package com.example.demofx;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Decimal {
+public class Decimal {                                                                                                  // Class to convert decimal to ASCII
 
     public static int[] toAscii(String input) {
-        // Remove any spaces from the input string
-        input = input.replaceAll("\\s+", "");
+        input = input.replaceAll("\\s+", "");                                                         // Remove any spaces from the input string
 
-        // List to hold the ASCII values
-        List<Integer> asciiList = new ArrayList<>();
+        List<Integer> asciiList = new ArrayList<>();                                                                    // List to hold the ASCII values
 
-        // Start processing the input string
-        int i = 0;
+        int i = 0;                                                                                                      // Start processing the input string
         while (i < input.length()) {
-            // Attempt to parse chunks of 1, 2, or 3 digits
             boolean validChunkFound = false;
-            for (int chunkSize = 3; chunkSize > 0; chunkSize--) {
+            for (int chunkSize = 3; chunkSize > 0; chunkSize--) {                                                       // Attempt to parse chunks of 3, 2, or 1 digits
                 if (i + chunkSize <= input.length()) {
-                    String chunk = input.substring(i, i + chunkSize);
+                    String chunk = input.substring(i, i + chunkSize);                                                   // Get the next chunk of digits
                     long asciiValue = Long.parseLong(chunk);
                     if (asciiValue >= 0 && asciiValue <= 255) {
                         asciiList.add((int) asciiValue);
@@ -29,17 +25,15 @@ public class Decimal {
                     }
                 }
             }
-            if (!validChunkFound) {
+            if (!validChunkFound) {                                                                                     // If no valid chunk was found, throw an exception
                 throw new NumberFormatException("Invalid input: unable to parse valid ASCII values from input string");
             }
         }
 
-        // Convert the list to an array
-        int[] asciiArray = new int[asciiList.size()];
+        int[] asciiArray = new int[asciiList.size()];                                                                   // Convert the list to an array
         for (int j = 0; j < asciiArray.length; j++) {
             asciiArray[j] = asciiList.get(j);
         }
-
         return asciiArray;
     }
 }
