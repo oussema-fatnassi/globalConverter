@@ -1,24 +1,30 @@
 package com.example.demofx;
 
-public class Binary {                                               // Class to convert binary to ASCII
+public class Binary {
 
-    public static int[] toAscii(String input) {                     // Method to convert binary to ASCII
-        String[] binaryArray = input.split("\\s+");
-        int[] asciiArray = new int[binaryArray.length];
-        for (int i = 0; i < binaryArray.length; i ++) {
-            String chunk = binaryArray[i];
-            int asciiValue = binaryToDecimal(chunk);
-            asciiArray[i] = asciiValue;
+    public static int[] toAscii(String input) {
+        // Remove any spaces from the input string
+        input = input.replaceAll("\\s+", "");
+
+        // Split the input into chunks of 8 bits
+        int chunkSize = 8;
+        int numChunks = (int) Math.ceil(input.length() / (double) chunkSize);
+        int[] asciiArray = new int[numChunks];
+
+        for (int i = 0; i < numChunks; i++) {
+            String chunk = input.substring(i * chunkSize, Math.min(input.length(), (i + 1) * chunkSize));
+            asciiArray[i] = binaryToDecimal(chunk);
         }
+
         return asciiArray;
     }
 
-    public static int binaryToDecimal(String binary) {              // Method to convert binary to decimal
+    private static int binaryToDecimal(String binary) {
         int decimal = 0;
         int power = 0;
         for (int i = binary.length() - 1; i >= 0; i--) {
             if (binary.charAt(i) == '1') {
-                decimal += Math.pow(2, power);
+                decimal += (int) Math.pow(2, power);
             }
             power++;
         }
