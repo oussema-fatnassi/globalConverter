@@ -14,6 +14,7 @@ public class GlobalConverterApplication extends Application {                   
         Scene scene = new Scene(fxmlLoader.load(), 1000, 800);                                                   // Create the scene with the FXML file
         stage.setTitle("Global Converter");
         stage.setScene(scene);
+        stage.setResizable(false);                                                                                      // Disable resizing of the window
         stage.show();
     }
 
