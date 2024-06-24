@@ -12,18 +12,29 @@ Global Converter is a Java application that translates character strings into di
 
 #### Features
 
-Base Conversion: Convert character strings to octal, hexadecimal, binary, decimal, or text bases.
-Validation: Ensure that input strings are valid and contain only alphanumeric characters.
-Encryption/Decryption: Encrypt and decrypt character strings using simple encryption algorithms.
-Reverse Conversion: Convert results back to their original base.
-Conversion Options: Support for abbreviated conversion options.
+- **Base Conversion**: Convert character strings to octal, hexadecimal, binary, decimal, or text bases.
+- **Validation**: Ensure that input strings are valid and contain only alphanumeric characters.
+- **Encryption/Decryption**: Encrypt and decrypt character strings using simple encryption algorithms.
+- **Reverse Conversion**: Convert results back to their original base.
+- **Conversion Options**: Support for abbreviated conversion options.
 
-##### Useful Resources
+### Useful Resources
 
-Binary System
-Hexadecimal System
-Octal System
-Decimal System
-ASCII
-Caesar Cipher
+- [Binary System](#)
+- [Hexadecimal System](#)
+- [Octal System](#)
+- [Decimal System](#)
+- [ASCII](#)
+- [Caesar Cipher](#)
+
+### How to use it?
+
+1. User inputs a message.
+2. The application validates the input.
+3. The user selects a base for conversion.
+4. The application converts the message to the selected base.
+5. Optional: The user can encrypt or decrypt the message.
+6. The application displays the result.
+7. The user can reverse convert the message back to its original base.
+
 Thank you for participating and happy coding!
