@@ -56,34 +56,46 @@ public class GlobalConverterController implements Initializable {               
         saveButton.setOnAction(event -> handleSave());
     }
 
-    private void handleConvert() {                                                                                      // Method to handle the conversion
-        String input = originalTextArea.getText();
+    private void handleConvert() {                                                                                      // Method to handle the convert operation
+        String input = originalTextArea.getText();                                                                      // Get the input values
         String fromFormat = originalFormat.getValue();
         String toFormat = targetFormat.getValue();
         String selectedOperation = operation.getValue();
         String selectedCipherType = cipherType.getValue();
         String key = cipherKey.getText();
 
-        if (input.isEmpty() || fromFormat == null || toFormat == null || selectedOperation == null) {                   // Check if the input fields are empty
+        if (input.isEmpty() || fromFormat == null || toFormat == null || selectedOperation == null) {                   // Check if any fields are missing
             showAlert(Alert.AlertType.ERROR, "Error", "Missing Input", "Please fill all fields.");
             return;
         }
 
-        ConversionResult conversionResult = convertToAscii(input, fromFormat);                                          // Convert the input to ASCII
+        ConversionResult conversionResult = convertToAscii(input, fromFormat);                                          // Convert the input to ASCII and check for errors
         if (conversionResult.getErrorMessage() != null) {
             showAlert(Alert.AlertType.ERROR, "Error", "Conversion Error", conversionResult.getErrorMessage());
             return;
         }
 
-        int[] asciiArray = conversionResult.getAsciiArray();
+        int[] asciiArray = conversionResult.getAsciiArray();                                                            // Get the ASCII array from the conversion result
         String result;
-        try {                                                                                                           // Handle the selected operation
-            result = switch (selectedOperation) {
-                case "Cipher" -> handleCipher(new String(asciiArray, 0, asciiArray.length), selectedCipherType, key);
-                case "Decipher" -> handleDecipher(new String(asciiArray, 0, asciiArray.length), selectedCipherType, key);
-                case "Convert" -> convertFromAscii(asciiArray, toFormat);
-                default -> "";
-            };
+        try {
+            switch (selectedOperation) {
+                case "Cipher":
+                    String cipheredText = handleCipher(new String(asciiArray, 0, asciiArray.length), selectedCipherType, key);
+                    int[] cipheredAscii = Text.toAscii(cipheredText);                                                   // Convert ciphered text back to ASCII
+                    result = convertFromAscii(cipheredAscii, toFormat);                                                 // Convert ASCII to selected target format
+                    break;
+                case "Decipher":
+                    String decipheredText = handleDecipher(new String(asciiArray, 0, asciiArray.length), selectedCipherType, key);
+                    int[] decipheredAscii = Text.toAscii(decipheredText);                                               // Convert deciphered text back to ASCII
+                    result = convertFromAscii(decipheredAscii, toFormat);                                               // Convert ASCII to selected target format
+                    break;
+                case "Convert":
+                    result = convertFromAscii(asciiArray, toFormat);                                                    // Directly convert ASCII to selected target format
+                    break;
+                default:
+                    result = "";
+                    break;
+            }
         } catch (Exception e) {
             showAlert(Alert.AlertType.ERROR, "Error", "Cipher/Decipher Error", e.getMessage());
             return;
@@ -91,6 +103,7 @@ public class GlobalConverterController implements Initializable {               
 
         resultLabel.setText(result);
     }
+
 
     private void showAlert(Alert.AlertType alertType, String title, String headerText, String contentText) {            // Method to show an alert
         Alert alert = new Alert(alertType);
@@ -137,7 +150,7 @@ public class GlobalConverterController implements Initializable {               
         }
     }
 
-    private String convertFromAscii(int[] asciiArray, String format) {                                                  // Method to convert from ASCII to the target format
+    private String convertFromAscii(int[] asciiArray, String format) {                                                  // Method to convert the ASCII array to the target format
         return switch (format) {
             case "Decimal" -> Ascii.toDecimal(asciiArray);
             case "Hexadecimal" -> Ascii.toHexadecimal(asciiArray);
@@ -147,6 +160,7 @@ public class GlobalConverterController implements Initializable {               
             default -> "";
         };
     }
+
 
     private String handleCipher(String input, String cipherType, String key) throws Exception {                         // Method to handle the cipher operation
         switch (cipherType) {
