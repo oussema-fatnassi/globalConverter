@@ -37,4 +37,9 @@ Global Converter is a Java application that translates character strings into di
 6. The application displays the result.
 7. The user can reverse convert the message back to its original base.
 
+### How to launch the application?
+This project has two different versions:
+1. The terminal version is launched from the Main.java file
+2. The GUI version is launched from the GlobalConverterApplication.java file
+
 Thank you for participating and happy coding!
